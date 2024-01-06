@@ -3,6 +3,6 @@
 
 int main()
 {
-    printf("projet sfsd");
+    printf("hello world");
     return 0;
 }
