@@ -3,9 +3,10 @@
 #include <string.h>
 
 typedef struct {
-      int nbrblock;      //le nombre de blocks
+      int nbrblock;           //le nombre de blocks
       int nbreng;             //le nombre d'enregistrements
 }enteteF;
+
 
 
  // enregistrement physique avec chevauchement
@@ -36,16 +37,20 @@ int main()
 
 
 
-     FILE *projetsfsd= fopen(projetsfsd,"w");
-
+     FILE *projetsfsd= fopen(projetsfsd,"wb");
+      if (projetsfsd == NULL) {
+        perror("erreur d'ouverture de fichier");
+        return 1;
+      }
 
 
       //l'initialisation de l'entete
       enteteF entete;
-      nbrblock=3;
-      nbreng=5;
+      entete.nbrblock=3;
+      entete.nbreng=5;
 
-      fwrite(&entete, sizeof(enteteF),1,projetsfsf);
+      fwrite(&entete, sizeof(enteteF),1,projetsfsd);
+
 
 
 
