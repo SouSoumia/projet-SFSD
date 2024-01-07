@@ -3,11 +3,16 @@
 #include <string.h>
 
 typedef struct {
-      int nbrblock; //le nombre de blocks
-      int 4;        //le nombre d'enregistrements
+      int nbrblock;      //le nombre de blocks
+      int nbreng;             //le nombre d'enregistrements
+      int nbrchamps;     // le nombre des champs dans chaque enregistrement
 }entete
 
-
+typedef struct{
+      char nom[50];
+      char prenom[50];
+      int matricule;
+}
 
 
 
