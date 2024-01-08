@@ -49,6 +49,7 @@ int main()
       entete.nbrblock=3;
       entete.nbreng=5;
 
+
       fwrite(&entete, sizeof(enteteF),1,projetsfsd);
 
 
