@@ -29,6 +29,18 @@ void ecrireng(FILE *projetsfsd, etudiant *etu)  // procédure qui écrit un enregi
       fwrite(etu, sizeof(etudiant),1,projetsfsd);
  }
 
+void ecrirechevau(FILE *projetsfsd,etudiant *etu){
+
+      fwrite(etu,sizeofeng,1,projet sfsd);
+
+
+
+
+}
+
+
+
+
 
 
 int main()
