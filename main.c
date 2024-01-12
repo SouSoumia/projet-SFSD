@@ -93,7 +93,39 @@ int entete_f(sfsdtovc *f, int i)
     if (i == 3)
         return f->entetef.NB_enreg_suppr;
 
+  //cette procédure permet de modifier différentes valeurs de l'entête fonction de la valeur de i
+void aff_entete(sfsdtovc *f, int i, int val)
+{
+    if (i == 1)
+        f->entetef.No_dern_bloc = val;
+    if (i == 2)
+        f->entetef.NB_enreg_inser = val;
+    if (i == 3)
+        f->entetef.NB_enreg_suppr = val; // Si i est égal à 4 la procédure met à jour la valeur de NB_enreg_suppr dans la structure entetef de la structure tovc avec la valeur fournie (val).
+}
+// llouer un nouveau bloc dans le fichier on va l'utiliser aprés
+int alloc_block(sfsdtovc *f)
+{
+    aff_entete(f, 1, entete_f(f, 1) + 1);
+    aff_entete(f, 2, 0);
+    return entete_f(f, 1);
 
+
+// parcourir tous les blocs du fichier et les afficher et lit le contenu de chaque bloc du fichier dans un buffer et exécute potentiellement des opérations sur les données du buffer
+
+void afficher(sfsdtovc *f)
+{
+    int i = 1, j;                                      //i à 1 pour représenter le numéro du bloc en cours d'examen
+    buffer buf;
+    while (i <= (entete_f(f, 1)))
+    {
+        j = 0;
+        lire(f, i, &buf);     //pour lire le contenu du bloc numéro i du fichier dans le buffer (buf).
+        while (j < max)
+        {
+        }
+        i++;   //Incrémente le numéro du bloc (i) pour passer au bloc suivant lors de la prochaine itération de la boucle principale.
+    }
 
 
 
@@ -107,54 +139,7 @@ int entete_f(sfsdtovc *f, int i)
 
 
 int main()
- {   char fineng='#';             // mark fin d'enregistrement
-     char finchamps='$';          // mark fin de champs
-
-
-
-     FILE *projetsfsd= fopen(projetsfsd,"wb");
-      if (projetsfsd == NULL) {
-        perror("erreur d'ouverture de fichier");
-        return 1;
-      }
-
-
-      //l'initialisation de l'entete
-      enteteF entete;
-      entete.nbrblock=3;
-      entete.nbreng=5;
-
-
-      fwrite(&entete, sizeof(enteteF),1,projetsfsd);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ {
 
 
 
