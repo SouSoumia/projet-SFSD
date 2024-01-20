@@ -26,6 +26,7 @@ typedef struct entete
     int No_dern_bloc;                // indice de dernier bloc
     int NB_enreg_inser;             // nombre d'enregistrement insérié
     int NB_enreg_suppr;            // nombre d'enregistrement supprimé
+    int ind_pos_libre;            // indice de position libre
 } entete;
 
  typedef struct sfsdtovc
@@ -50,6 +51,7 @@ typedef struct entete
             f->entetef.No_dern_bloc = 1;
             f->entetef.NB_enreg_inser = 0;
             f->entetef.NB_enreg_suppr = 0;
+            f->entetef.ind_pos_libre = 0;
         }
     }
     return f;
@@ -89,8 +91,10 @@ int entete_f(sfsdtovc *f, int i)
     if (i == 1)
         return f->entetef.No_dern_bloc;
     if (i == 2)
-        return f->entetef.NB_enreg_inser;
+        return f->entetef.ind_pos_libre;
     if (i == 3)
+        return f->entetef.NB_enreg_inser;
+    if (i == 4)
         return f->entetef.NB_enreg_suppr;
 
   //cette procédure permet de modifier différentes valeurs de l'entête fonction de la valeur de i
@@ -99,8 +103,10 @@ void aff_entete(sfsdtovc *f, int i, int val)
     if (i == 1)
         f->entetef.No_dern_bloc = val;
     if (i == 2)
-        f->entetef.NB_enreg_inser = val;
+        f->entety.ind_pos_libre = val;
     if (i == 3)
+        f->entetef.NB_enreg_inser = val;
+    if (i == 4)
         f->entetef.NB_enreg_suppr = val; // Si i est égal à 4 la procédure met à jour la valeur de NB_enreg_suppr dans la structure entetef de la structure tovc avec la valeur fournie (val).
 }
 // llouer un nouveau bloc dans le fichier on va l'utiliser aprés
