@@ -130,14 +130,51 @@ void afficher(sfsdtovc *f)
         while (j < max)
         {
         }
-        i++;   //Incrémente le numéro du bloc (i) pour passer au bloc suivant lors de la prochaine itération de la boucle principale.
+        i++;   //Incrementer le numéro du bloc (i) pour passer au bloc suivant lors de la prochaine itération de la boucle principale.
     }
 
 
 
-
-
 }
+
+ //************************************insertion d'element saisie par l'utilisateur***********************************************
+
+ void inserer_element(sfsdtovc *f) {
+    etudiant etud;
+
+
+     printf("Saisir le nom : ");
+     scanf("%s", etud.nom);
+
+
+    printf("Saisir le prénom : ");
+    scanf("%s", etud.prenom);
+
+
+    printf("Saisir le matricule : ");
+    scanf("%d", &etud.matricule);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
