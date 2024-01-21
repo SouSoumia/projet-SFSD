@@ -209,7 +209,11 @@ void afficher(sfsdtovc *f)
     i++;
 }
 
+      // Fin de la boucle de traitement
+     // On termine la copie des caractères restants de Tab dans le dernier bloc
 
+       buf.Tab[j] = Tab[ind];
+       j++;
 
 
 
