@@ -177,6 +177,14 @@ void afficher(sfsdtovc *f)
       lire(f, num_bloc, &buf);
       ecrire(f, num_bloc, &buf);
 
+      // Mettre à jour les informations dans l'entête
+
+       aff_entete(f, 2, f->entetef.ind_pos_libre + 1);
+       aff_entete(f, 3, f->entetef.NB_enreg_inser + 1);
+
+       printf("Insertion réussie.\n");
+}
+
 
 
 
