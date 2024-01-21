@@ -11,7 +11,14 @@
     int matricule;
     char fineng;
     char finchamps;
-};
+    int taille;
+
+}etudiant;
+
+
+
+
+
 
  typedef struct block
 {
@@ -19,7 +26,18 @@
 
 } block;
 
+
+
+
+
+
 typedef block buffer;
+
+
+
+
+
+
 
 typedef struct entete
 {
@@ -29,11 +47,23 @@ typedef struct entete
     int ind_pos_libre;            // indice de position libre
 } entete;
 
+
+
+
+
+
+
  typedef struct sfsdtovc
 {
     FILE *fichier;
     entete entetef;
 } sfsdtovc;
+
+
+
+
+
+
 
   sfsdtovc *ouvrir(char nom[50], char mode)
 {
@@ -56,6 +86,16 @@ typedef struct entete
     }
     return f;
 }
+
+
+
+
+
+
+
+
+
+
     void fermer(sfsdtovc *f)
 {
     rewind(f->fichier);                                           // positionner le curseur au debut du fichier
@@ -63,6 +103,15 @@ typedef struct entete
     fclose(f->fichier);
     free(f);                                               // Libère la mémoire allouée dynamiquement pour la structure sfsdtovc
 }
+
+
+
+
+
+
+
+
+
 
 // lire un bloc spécifique à partir d'un fichier  et le stocker dans le buffer (buf est un pointeur vers le buffer)
 void lire(sfsdtovc *f, int num_block, buffer *buf)
@@ -73,6 +122,18 @@ void lire(sfsdtovc *f, int num_block, buffer *buf)
         fread(buf, sizeof(struct block), 1, f->fichier);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 // écrire le contenu d'un tampon (buffer) dans un bloc spécifique
 
 void ecrire(sfsdtovc *f, int num_block, buffer *buf)
@@ -83,6 +144,17 @@ void ecrire(sfsdtovc *f, int num_block, buffer *buf)
         fwrite(buf, sizeof(struct block), 1, f->fichier);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 // La fonction est conçue pour retourner différentes valeurs de l'entête du fichier en fonction de la valeur de i
 
@@ -97,24 +169,62 @@ int entete_f(sfsdtovc *f, int i)
     if (i == 4)
         return f->entetef.NB_enreg_suppr;
 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //cette procédure permet de modifier différentes valeurs de l'entête fonction de la valeur de i
 void aff_entete(sfsdtovc *f, int i, int val)
 {
     if (i == 1)
         f->entetef.No_dern_bloc = val;
     if (i == 2)
-        f->entety.ind_pos_libre = val;
+        f->entetef.ind_pos_libre = val;
     if (i == 3)
         f->entetef.NB_enreg_inser = val;
     if (i == 4)
         f->entetef.NB_enreg_suppr = val; // Si i est égal à 4 la procédure met à jour la valeur de NB_enreg_suppr dans la structure entetef de la structure tovc avec la valeur fournie (val).
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // llouer un nouveau bloc dans le fichier on va l'utiliser aprés
 int alloc_block(sfsdtovc *f)
 {
     aff_entete(f, 1, entete_f(f, 1) + 1);
     aff_entete(f, 2, 0);
     return entete_f(f, 1);
+}
+
+
+
+
+
 
 
 // parcourir tous les blocs du fichier et les afficher et lit le contenu de chaque bloc du fichier dans un buffer et exécute potentiellement des opérations sur les données du buffer
@@ -129,18 +239,44 @@ void afficher(sfsdtovc *f)
         lire(f, i, &buf);     //pour lire le contenu du bloc numéro i du fichier dans le buffer (buf).
         while (j < max)
         {
+            printf("%c", buf.tab[j]);
+
+            j++;
         }
         i++;   //Incrementer le numéro du bloc (i) pour passer au bloc suivant lors de la prochaine itération de la boucle principale.
     }
-
-      // Déclaration de la fonction EcrireDir
-      void EcrireDir(sfsdtovc *f, int i, buffer buf);
+    printf("\n");
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
  //************************************insertion d'element saisie par l'utilisateur***********************************************
 
- void inserer_element(sfsdtovc *f) {
+
+
+
+
+
+
+
+   void lire(sfsdtovc *f, int num_block, buffer *buf);
+    void EcrireDir(sfsdtovc *f, int i, struct block *buf);
+
+
+
+
+
+    void inserer_element(sfsdtovc *f) {
     etudiant etud;
 
 
@@ -186,54 +322,21 @@ void afficher(sfsdtovc *f)
        printf("Insertion réussie.\n");
 
 
-      /*Cette partie du code que je vais écrit effectue le traitement des derniers caractères restants dans le tableau
-      Tab du dernier bloc. Elle parcourt circulairement Tab à partir de l'indice ind jusqu'à l'indice indc.
-      Ensuite, elle écrit le bloc dans le fichier et met à jour les informations dans l'entête (AFF_Entete).
-      Enfin, elle ferme le fichier (Fermer(f)). */
 
 
 
-      int ind = 0;
-      int indc;
-      etudiant e;
-      char Tab[max];
-      int b = max;
-
-
-      ind == indc;
-
-      indc--; // Si (indc < 0) indc := e.Taille
-
-    while (ind != indc) {
-
-              buf.Tab[j] = Tab[ind];
-              ind = (ind + 1) % e.taille;
-              j++;
-}
-     // Si j = b, écrire le bloc dans le fichier
-
-    if (j == b) {
-    EcrireDir(f, i, buf);
-    j = 0;
-    i++;
-}
-
-      // Fin de la boucle de traitement
-     // On termine la copie des caractères restants de Tab dans le dernier bloc
-
-       buf.Tab[j] = Tab[ind];
-       j++;
 
 
 
-     // Ecrire le dernier bloc dans le fichier
-    EcrireDir(f, i, buf);
+
+
+
+        // lecture et écriture d'après le buffer
+         lire(f, num_bloc, &buf);
 
     // Mettre à jour les informations dans l'entête
-       AFF_Entete(f, 1, i);
-       AFF_Entete(f, 2, j);
-
-       Fermer(f);
+    aff_entete(f, 2, f->entetef.ind_pos_libre + 1);
+    aff_entete(f, 3, f->entetef.NB_enreg_inser + 1);
 
 
 
@@ -242,18 +345,79 @@ void afficher(sfsdtovc *f)
 
 
 
+    // Partie du code traitant les derniers caractères restants dans le tableau Tab du dernier bloc
 
 
 
 
 
+    int ind = 0;
+    int indc;
+    int j = 0;
+    char Tab[max];
+    int b = max;
+    int i = num_bloc; // Mettre à jour i avec le numéro de bloc actuel
+
+    indc = b - 1;
+
+
+
+
+
+    while (ind != indc)
+    {
+        buf.tab[j] = Tab[ind];
+        ind = (ind + 1) % b;
+        j++;
+
+        // Si j = b, écrire le bloc dans le fichier
+        if (j == b)
+        {
+            EcrireDir(f, i, &buf);
+            j = 0;
+            i++;
+        }
+    }
+
+
+
+
+
+
+
+
+    // Fin de la boucle de traitement
+    // On termine la copie des caractères restants de Tab dans le dernier bloc
+
+
+
+
+
+
+    buf.tab[j] = Tab[ind];
+    j++;
+
+
+
+
+
+    // Ecrire le dernier bloc dans le fichier
+        EcrireDir(f, i, &buf);
+
+
+
+
+
+    // Mettre à jour les informations dans l'entête
+    aff_entete(f, 1, i);
+    aff_entete(f, 2, j);
+
+
+
+
+
+    Fermer(f);
 }
-
-
-
-
-
-
 
 
 
@@ -279,7 +443,15 @@ void afficher(sfsdtovc *f)
 int main()
  {
 
+   // Ouvrir le fichier en mode création
 
+    sfsdtovc *fichier = ouvrir("votre_fichier.dat", 'n');
+
+    inserer_element(fichier);
+
+    afficher(fichier);
+
+    fermer(fichier);
 
 
         return 0;
