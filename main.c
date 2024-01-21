@@ -126,7 +126,32 @@ void afficher(sfsdtovc *f)
         }
         i++;   //Incr�mente le num�ro du bloc (i) pour passer au bloc suivant lors de la prochaine it�ration de la boucle principale.
     }
+void creation_fichier(char nomfich[256], char fichnoms[256], char fichprenoms[256], int *n)
+{
+    buffer buf;
+    char chaine[256], matricule[5], nomE[256];
+    int k, i = 1, j = 0;
+    char prenom[256], nom[256];
+    int trouve;
+    srand(time(NULL));
 
+    // nombre d'insertions
+    printf("Combien d'eleve initialement ?");
+    scanf("%d", n);
+
+    for (int k = 0; k < *n; k++)
+    {
+        gen_enrg(fichnoms, fichprenoms, chaine);
+        if (k == 0)
+        {
+            insertion(nomfich, chaine, 1);
+        }
+        else
+        {
+            insertion(nomfich, chaine, 2);
+        }
+    }
+}
 
 
 
@@ -194,7 +219,7 @@ switch (choix){
             printf("\n\n\n ________________________________\n");
             printf("\n  CREATION DU FICHIER INITIALE :");
             printf("\n ________________________________\n\n\n");
-            creation_fichier("ficherIn", "noms.txt", "prenoms.txt", "matieres.txt", &n);
+            creation_fichier("ficherIn", "noms.txt", "prenoms.txt" &n);
             printf("creation avec succes!\n");
             printf("tap to continue...");
             getch();
@@ -211,7 +236,7 @@ switch (choix){
 
             printf("~REMARQUE~\n");
             printf("notre enregistrement contient:\n");
-            printf("champ_eff(1 car)+id(4car)+annee_scolaire(1car)+salle(1car)+nom,prenom,genre+les notes.\n\n");
+            printf("champ_eff(1 car)+matricule(4car)+nom,prenom.\n\n");
 
             tovc *f = ouvrir("ficherIn", 'a');
             printf("\nEntrer nom: ");
@@ -248,7 +273,7 @@ switch (choix){
             printf("\n");
             printf("~REMARQUE~\n");
             printf("notre enregistrement contient:\n");
-            printf("champ_eff(1 car)+id(4car)+annee_scolaire(1car)+salle(1car)+nom,prenom,genre+les notes.\n\n");
+            printf("champ_eff(1 car)+matricule(4car)+nom,prenom.\n\n");
 
             tovc *f = ouvrir("ficherIn", 'a');
             printf("\n Eleve a supprimer :\n");
