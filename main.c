@@ -217,6 +217,16 @@ void afficher(sfsdtovc *f)
 
 
 
+     // Ecrire le dernier bloc dans le fichier
+    EcrireDir(f, i, buf);
+
+    // Mettre à jour les informations dans l'entête
+       AFF_Entete(f, 1, i);
+       AFF_Entete(f, 2, j);
+
+       Fermer(f);
+
+
 
 
 
