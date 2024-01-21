@@ -133,7 +133,8 @@ void afficher(sfsdtovc *f)
         i++;   //Incrementer le numéro du bloc (i) pour passer au bloc suivant lors de la prochaine itération de la boucle principale.
     }
 
-
+      // Déclaration de la fonction EcrireDir
+      void EcrireDir(sfsdtovc *f, int i, buffer buf);
 
 }
 
@@ -189,6 +190,14 @@ void afficher(sfsdtovc *f)
       Tab du dernier bloc. Elle parcourt circulairement Tab à partir de l'indice ind jusqu'à l'indice indc.
       Ensuite, elle écrit le bloc dans le fichier et met à jour les informations dans l'entête (AFF_Entete).
       Enfin, elle ferme le fichier (Fermer(f)). */
+
+
+
+      int ind = 0;
+      int indc;
+      etudiant e;
+      char Tab[max];
+      int b = max;
 
 
       ind == indc;
