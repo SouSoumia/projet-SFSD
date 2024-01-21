@@ -110,7 +110,7 @@ int alloc_block(sfsdtovc *f)
     aff_entete(f, 2, 0);
     return entete_f(f, 1);
 
-
+}
 // parcourir tous les blocs du fichier et les afficher et lit le contenu de chaque bloc du fichier dans un buffer et ex�cute potentiellement des op�rations sur les donn�es du buffer
 
 void afficher(sfsdtovc *f)
@@ -154,9 +154,6 @@ void creation_fichier(char nomfich[256], char fichnoms[256], char fichprenoms[25
 }
 
 
-
-
-}
 void suppression_logique(sfsdtovc *f,  char nom[50], char prenom[50],int matricule){ // on commence par donner le nom prenom et matricule a supprimer
  int i,j,trouve;
  buffer buf;
@@ -176,13 +173,13 @@ void suppression_logique(sfsdtovc *f,  char nom[50], char prenom[50],int matricu
 
 
 int main()
- { 
+{ 
 int matricule,i,j;
 char nom[50];
 char prenom[50];
-val ind[20];
 int trouve;
-int choix,choix1
+int choix,choix1;
+menuprincipal:
    printf("______________________________________________________________________________\n");
     printf("\n  LE MENU PRINCIPAL");
     printf("\n ______________________________________________________________________________\n\n\n");
@@ -219,7 +216,7 @@ switch (choix){
             printf("\n\n\n ________________________________\n");
             printf("\n  CREATION DU FICHIER INITIALE :");
             printf("\n ________________________________\n\n\n");
-            creation_fichier("ficherIn", "noms.txt", "prenoms.txt" &n);
+            creation_fichier("ficherIn", "noms.txt", "prenoms.txt" );
             printf("creation avec succes!\n");
             printf("tap to continue...");
             getch();
@@ -238,7 +235,7 @@ switch (choix){
             printf("notre enregistrement contient:\n");
             printf("champ_eff(1 car)+matricule(4car)+nom,prenom.\n\n");
 
-            tovc *f = ouvrir("ficherIn", 'a');
+            sfsdtovc *f = ouvrir("ficherIn", 'a');
             printf("\nEntrer nom: ");
             scanf("%s", nom);
             printf("Entrer prenom: ");
@@ -275,7 +272,7 @@ switch (choix){
             printf("notre enregistrement contient:\n");
             printf("champ_eff(1 car)+matricule(4car)+nom,prenom.\n\n");
 
-            tovc *f = ouvrir("ficherIn", 'a');
+            sfsdtovc *f = ouvrir("ficherIn", 'a');
             printf("\n Eleve a supprimer :\n");
             printf("\nEntrer nom: ");
             scanf("%s", nom);
