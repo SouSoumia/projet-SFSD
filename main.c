@@ -155,6 +155,29 @@ void afficher(sfsdtovc *f)
     scanf("%d", &etud.matricule);
 
 
+     buffer buf;
+     int num_bloc;
+
+
+
+     // Demander à l'utilisateur le numéro du bloc où insérer l'étudiant
+
+
+       printf("Saisir le numéro du bloc pour l'insertion : ");
+       scanf("%d", &num_bloc);
+
+
+
+        if (num_bloc > f->entetef.No_dern_bloc) {
+        printf("Le bloc spécifié n'existe pas. L'insertion a échoué.\n");
+        return;
+    }
+
+    // lecture et écriture d'aprés le buffer
+      lire(f, num_bloc, &buf);
+      ecrire(f, num_bloc, &buf);
+
+
 
 
 
