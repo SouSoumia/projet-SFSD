@@ -152,39 +152,128 @@ void suppression_logique(sfsdtovc *f,  char nom[50], char prenom[50],int matricu
 
 int main()
  { 
-int mat,i,j;
+int matricule,i,j;
 char nom[50];
 char prenom[50];
 val ind[20];
-int choice,choice1
-printf("\n MENU PRINCIPAL");
-Printf("1-START \n");
-Printf("2-QUITTER \n");
-Printf("\n\n VOTRE CHOIX :");
-Scanf("%d", &choice);
-switch (choice){
+int trouve;
+int choix,choix1
+   printf("______________________________________________________________________________\n");
+    printf("\n  LE MENU PRINCIPAL");
+    printf("\n ______________________________________________________________________________\n\n\n");
+    printf(" [1] : start;\n");
+    printf(" [0] : quitter;\n");
+Scanf("%d", &choix);
+switch (choix){
     case 0: // fin programme ;
     {
         goto end;
     }
     case 1: // nouveau fichier
     {
- system("cls");
+ 
+ manipulation_fichier:
+        system("cls");
 
-        printf("\n\n 1 : Creation;\n");
-        printf(" 2 : Recherche;\n");
-        printf("3 : Supression logique;\n");
-
-         printf("\n\n Votre choix : ");
-        scanf("%d", &choice1);
-
-
+        printf("\n\n [1] : Creation;\n");
+        printf(" [2] : Recherche;\n");
+        printf(" [3] : Affichage;\n");
+        printf(" [4] : Supression logique;\n");
+          printf("\n\n Votre choix : ");
+        scanf("%d", &choix1);
 
 
+  switch (choix1)
+        {
+        case 0: // retour au menu principal
+        {
+            goto menuprincipal;
+        }
+        case 1: // insertion
+        {
+            printf("\n\n\n ________________________________\n");
+            printf("\n  CREATION DU FICHIER INITIALE :");
+            printf("\n ________________________________\n\n\n");
+            creation_fichier("ficherIn", "noms.txt", "prenoms.txt", "matieres.txt", &n);
+            printf("creation avec succes!\n");
+            printf("tap to continue...");
+            getch();
+            goto manipulation_fichier;
+        }
+        case 2: // recherche
+        {
+
+            printf("\n\n\n ________________________________\n");
+            printf("\n  LA RECHERCHE :");
+            printf("\n ________________________________\n\n\n");
+
+            affichage("ficherIn");
+
+            printf("~REMARQUE~\n");
+            printf("notre enregistrement contient:\n");
+            printf("champ_eff(1 car)+id(4car)+annee_scolaire(1car)+salle(1car)+nom,prenom,genre+les notes.\n\n");
+
+            tovc *f = ouvrir("ficherIn", 'a');
+            printf("\nEntrer nom: ");
+            scanf("%s", nom);
+            printf("Entrer prenom: ");
+            scanf("%s", prenom);
+            getchar();
+            printf("entrer matricule:");
+            scanf("%d", matricule);
+
+            Recherche(f,nom,prenom,matricule,&trouve,&i,&j);
+    if (trouve)
+            {
+                printf("\nElement trouve! dans le bloc %d en position %d\n", i, j);
+            }
+            else
+            {
+                printf("\nElement non trouve dans le fichier!");
+            }
+            fermer(f);
+            printf("\ntap to continue...");
+
+            getch();
+            goto manipulation_fichier;
+        }
+ 
+            case 3:
+        {
+            printf("\n\n\n ______________________________________________________________________________\n");
+            printf("\n  SUPRESSION LOGIQUE:");
+            printf("\n ______________________________________________________________________________\n\n\n");
+
+            affichage("ficherIn");
+            printf("\n");
+            printf("~REMARQUE~\n");
+            printf("notre enregistrement contient:\n");
+            printf("champ_eff(1 car)+id(4car)+annee_scolaire(1car)+salle(1car)+nom,prenom,genre+les notes.\n\n");
+
+            tovc *f = ouvrir("ficherIn", 'a');
+            printf("\n Eleve a supprimer :\n");
+            printf("\nEntrer nom: ");
+            scanf("%s", nom);
+            printf("Entrer prenom: ");
+            scanf("%s", prenom);
+            getchar();
+            printf("entrer matricule:");
+            scanf("%d", matricule);
+
+              suppression_log(f, nom, prenom, matricule);
+            fermer(f);
+            printf("\ntap to continue...");
+
+            getch();
+            goto manipulation_fichier;
+        }
 
 
 
  }
+    }
+    
+end:
   return 0;
 }
 
