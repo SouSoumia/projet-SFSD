@@ -183,6 +183,47 @@ void afficher(sfsdtovc *f)
        aff_entete(f, 3, f->entetef.NB_enreg_inser + 1);
 
        printf("Insertion réussie.\n");
+
+
+      /*Cette partie du code que je vais écrit effectue le traitement des derniers caractères restants dans le tableau
+      Tab du dernier bloc. Elle parcourt circulairement Tab à partir de l'indice ind jusqu'à l'indice indc.
+      Ensuite, elle écrit le bloc dans le fichier et met à jour les informations dans l'entête (AFF_Entete).
+      Enfin, elle ferme le fichier (Fermer(f)). */
+
+
+      ind == indc;
+
+      indc--; // Si (indc < 0) indc := e.Taille
+
+    while (ind != indc) {
+
+              buf.Tab[j] = Tab[ind];
+              ind = (ind + 1) % e.taille;
+              j++;
+}
+     // Si j = b, écrire le bloc dans le fichier
+
+    if (j == b) {
+    EcrireDir(f, i, buf);
+    j = 0;
+    i++;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
