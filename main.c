@@ -151,13 +151,42 @@ void suppression_logique(sfsdtovc *f,  char nom[50], char prenom[50],int matricu
 
 
 int main()
- {
+ { 
+int mat,i,j;
+char nom[50];
+char prenom[50];
+val ind[20];
+int choice,choice1
+printf("\n MENU PRINCIPAL");
+Printf("1-START \n");
+Printf("2-QUITTER \n");
+Printf("\n\n VOTRE CHOIX :");
+Scanf("%d", &choice);
+switch (choice){
+    case 0: // fin programme ;
+    {
+        goto end;
+    }
+    case 1: // nouveau fichier
+    {
+ system("cls");
+
+        printf("\n\n 1 : Creation;\n");
+        printf(" 2 : Recherche;\n");
+        printf("3 : Supression logique;\n");
+
+         printf("\n\n Votre choix : ");
+        scanf("%d", &choice1);
 
 
 
 
-        return 0;
+
+
+
  }
+  return 0;
+}
 
 
 
