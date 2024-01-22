@@ -127,6 +127,115 @@ void afficher(sfsdtovc *f)
         i++;   //Incr�mente le num�ro du bloc (i) pour passer au bloc suivant lors de la prochaine it�ration de la boucle principale.
     }
 }
+void mat_aleat(char chaine[3])
+{
+    int min = 0; //définissent les bornes pour la génération de nombres aléatoires entre 0 et 9 inclus.
+    int maxi = 9; 
+    char c; //est utilisé pour stocker chaque caractère généré.
+    int x; // est la valeur générée aléatoirement entre min et maxi.
+    FILE *fichier = fopen("ids.txt", "r+");
+    int vrai = 0;
+    ;
+    char nom[256];
+    while (vrai == 0)
+    {
+
+        vrai = 1;
+        for (int i = 0; i < 4; i++)
+        {
+            x = rand() % (maxi + 1 - min) + min;
+            c = x + '0';
+            chaine[i] = c;
+        }
+        chaine[4] = '\0';
+
+        while (!feof(fichier))
+        {
+            fgets(nom, 256, fichier);
+            if (strcpy(nom, chaine) == 0)
+            {
+                vrai = 0;
+            }
+        }
+    }
+    fputs("\n", fichier);
+    fputs(chaine, fichier);
+    fclose(fichier);
+}
+void alea_nom_prenom(char chaine[256], char nomfich1[256], char nomfich2[256])
+{
+    int min = 1;
+    int maxi = 5;
+    // srand(time(NULL));
+    int i = rand() % (maxi + 1 - min) + min;
+    int j = rand() % (maxi + 1 - min) + min;
+    strcpy(chaine, "\0");
+
+    // reccupere le nom et le prenom
+    char nom[256];
+
+    FILE *fichier = fopen(nomfich1, "r");
+    while (i > 0)
+    {
+        fgets(nom, 256, fichier);
+        i--;
+    }
+    fclose(fichier);
+    char prenom[256];
+    FILE *fichier2 = fopen(nomfich2, "r");
+
+    while (j > 0)
+    {
+        fgets(prenom, 256, fichier2);
+        j--;
+    }
+    fclose(fichier2);
+    // pour suprimmer le dernier saut de ligne
+    int k = 0;
+    int z = 0;
+    while (prenom[k] != '\0')
+    {
+        if (prenom[k] != '\n')
+        {
+            prenom[z] = prenom[k];
+            z++;
+        }
+        k++;
+    }
+    prenom[z] = '\0';
+
+    k = 0;
+    z = 0;
+    while (nom[k] != '\0')
+    {
+        if (nom[k] != '\n')
+        {
+            nom[z] = nom[k];
+            z++;
+        }
+        k++;
+    }
+    nom[z] = '\0';
+
+    strcat(nom, ",");
+    strcat(nom, prenom);
+    int x = strlen(nom);
+    char s[256];
+    sprintf(s, "%d", x);
+    strcat(chaine, s);
+    strcat(chaine, nom);
+}
+
+void gen_enrg(char fnom[256], char fprenom[256], char chaine[256])
+{
+    char matricule[5], nomE[256];
+    strcpy(chaine, "F"); // eff <- faux donc enregistrement existant logiquement
+    mat_aleat(matricule);
+    alea_nom_prenom(nomE, fnom, fprenom);
+    strcat(chaine, matricule);
+    strcat(chaine, nomE);
+
+}
 void creation_fichier(char nomfich[256], char fichnoms[256], char fichprenoms[256], int *n)
 {
     buffer buf;
