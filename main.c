@@ -92,7 +92,7 @@ int entete_f(sfsdtovc *f, int i)
         return f->entetef.NB_enreg_inser;
     if (i == 3)
         return f->entetef.NB_enreg_suppr;
-
+}
   //cette proc�dure permet de modifier diff�rentes valeurs de l'ent�te fonction de la valeur de i
 void aff_entete(sfsdtovc *f, int i, int val)
 {
@@ -126,6 +126,7 @@ void afficher(sfsdtovc *f)
         }
         i++;   //Incr�mente le num�ro du bloc (i) pour passer au bloc suivant lors de la prochaine it�ration de la boucle principale.
     }
+}
 void creation_fichier(char nomfich[256], char fichnoms[256], char fichprenoms[256], int *n)
 {
     buffer buf;
@@ -174,7 +175,7 @@ void suppression_logique(sfsdtovc *f,  char nom[50], char prenom[50],int matricu
 
 int main()
 { 
-int matricule,i,j;
+int matricule,i,j,n;
 char nom[50];
 char prenom[50];
 int trouve;
@@ -216,7 +217,7 @@ switch (choix){
             printf("\n\n\n ________________________________\n");
             printf("\n  CREATION DU FICHIER INITIALE :");
             printf("\n ________________________________\n\n\n");
-            creation_fichier("ficherIn", "noms.txt", "prenoms.txt" );
+            creation_fichier("ficherIn", "noms.txt", "prenoms.txt" , &n);
             printf("creation avec succes!\n");
             printf("tap to continue...");
             getch();
@@ -294,7 +295,7 @@ switch (choix){
 
  }
     }
-    
+}   
 end:
   return 0;
 }
