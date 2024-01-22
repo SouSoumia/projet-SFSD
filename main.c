@@ -339,7 +339,7 @@ switch (choix){
             printf("\n  LA RECHERCHE :");
             printf("\n ________________________________\n\n\n");
 
-            affichage("ficherIn");
+            afficher("ficherIn");
 
             printf("~REMARQUE~\n");
             printf("notre enregistrement contient:\n");
@@ -376,7 +376,7 @@ switch (choix){
             printf("\n  SUPRESSION LOGIQUE:");
             printf("\n ______________________________________________________________________________\n\n\n");
 
-            affichage("ficherIn");
+            afficher("ficherIn");
             printf("\n");
             printf("~REMARQUE~\n");
             printf("notre enregistrement contient:\n");
@@ -392,7 +392,7 @@ switch (choix){
             printf("entrer matricule:");
             scanf("%d", matricule);
 
-              suppression_log(f, nom, prenom, matricule);
+              suppression_logique(f, nom, prenom, matricule);
             fermer(f);
             printf("\ntap to continue...");
 
