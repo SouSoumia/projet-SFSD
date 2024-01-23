@@ -11,7 +11,14 @@
     int matricule;
     char fineng;
     char finchamps;
-};
+    int taille;
+
+}etudiant;
+
+
+
+
+
 
  typedef struct block
 {
@@ -19,20 +26,49 @@
 
 } block;
 
+
+
+
+
+
 typedef block buffer;
+
+
+
+
+
+
 
 typedef struct entete
 {
     int No_dern_bloc;                // indice de dernier bloc
+<<<<<<< HEAD
     int NB_enreg_inser;             // nombre d'enregistrement insï¿½riï¿½
     int NB_enreg_suppr;            // nombre d'enregistrement supprimï¿½
+=======
+    int NB_enreg_inser;             // nombre d'enregistrement insérié
+    int NB_enreg_suppr;            // nombre d'enregistrement supprimé
+    int ind_pos_libre;            // indice de position libre
+>>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 } entete;
+
+
+
+
+
+
 
  typedef struct sfsdtovc
 {
     FILE *fichier;
     entete entetef;
 } sfsdtovc;
+
+
+
+
+
+
 
   sfsdtovc *ouvrir(char nom[50], char mode)
 {
@@ -50,10 +86,21 @@ typedef struct entete
             f->entetef.No_dern_bloc = 1;
             f->entetef.NB_enreg_inser = 0;
             f->entetef.NB_enreg_suppr = 0;
+            f->entetef.ind_pos_libre = 0;
         }
     }
     return f;
 }
+
+
+
+
+
+
+
+
+
+
     void fermer(sfsdtovc *f)
 {
     rewind(f->fichier);                                           // positionner le curseur au debut du fichier
@@ -62,7 +109,20 @@ typedef struct entete
     free(f);                                               // Libï¿½re la mï¿½moire allouï¿½e dynamiquement pour la structure sfsdtovc
 }
 
+<<<<<<< HEAD
 // lire un bloc spï¿½cifique ï¿½ partir d'un fichier  et le stocker dans le buffer (buf est un pointeur vers le buffer)
+=======
+
+
+
+
+
+
+
+
+
+// lire un bloc spécifique à partir d'un fichier  et le stocker dans le buffer (buf est un pointeur vers le buffer)
+>>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 void lire(sfsdtovc *f, int num_block, buffer *buf)
 {
     if (num_block <= (f->entetef).No_dern_bloc)
@@ -71,7 +131,23 @@ void lire(sfsdtovc *f, int num_block, buffer *buf)
         fread(buf, sizeof(struct block), 1, f->fichier);
     }
 }
+<<<<<<< HEAD
 // ï¿½crire le contenu d'un tampon (buffer) dans un bloc spï¿½cifique
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+// écrire le contenu d'un tampon (buffer) dans un bloc spécifique
+>>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 
 void ecrire(sfsdtovc *f, int num_block, buffer *buf)
 {
@@ -82,33 +158,101 @@ void ecrire(sfsdtovc *f, int num_block, buffer *buf)
     }
 }
 
+<<<<<<< HEAD
 // La fonction est conï¿½ue pour retourner diffï¿½rentes valeurs de l'entï¿½te du fichier en fonction de la valeur de i
+=======
+
+
+
+
+
+
+
+
+
+
+
+// La fonction est conçue pour retourner différentes valeurs de l'entête du fichier en fonction de la valeur de i
+>>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 
 int entete_f(sfsdtovc *f, int i)
 {
     if (i == 1)
         return f->entetef.No_dern_bloc;
     if (i == 2)
-        return f->entetef.NB_enreg_inser;
+        return f->entetef.ind_pos_libre;
     if (i == 3)
+        return f->entetef.NB_enreg_inser;
+    if (i == 4)
         return f->entetef.NB_enreg_suppr;
+<<<<<<< HEAD
 }
   //cette procï¿½dure permet de modifier diffï¿½rentes valeurs de l'entï¿½te fonction de la valeur de i
+=======
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //cette procédure permet de modifier différentes valeurs de l'entête fonction de la valeur de i
+>>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 void aff_entete(sfsdtovc *f, int i, int val)
 {
     if (i == 1)
         f->entetef.No_dern_bloc = val;
     if (i == 2)
-        f->entetef.NB_enreg_inser = val;
+        f->entetef.ind_pos_libre = val;
     if (i == 3)
+<<<<<<< HEAD
         f->entetef.NB_enreg_suppr = val; // Si i est ï¿½gal ï¿½ 4 la procï¿½dure met ï¿½ jour la valeur de NB_enreg_suppr dans la structure entetef de la structure tovc avec la valeur fournie (val).
 }
 // llouer un nouveau bloc dans le fichier on va l'utiliser aprï¿½s
+=======
+        f->entetef.NB_enreg_inser = val;
+    if (i == 4)
+        f->entetef.NB_enreg_suppr = val; // Si i est égal à 4 la procédure met à jour la valeur de NB_enreg_suppr dans la structure entetef de la structure tovc avec la valeur fournie (val).
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// llouer un nouveau bloc dans le fichier on va l'utiliser aprés
+>>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 int alloc_block(sfsdtovc *f)
 {
     aff_entete(f, 1, entete_f(f, 1) + 1);
     aff_entete(f, 2, 0);
     return entete_f(f, 1);
+}
+
+
+
+
+
 
 }
 // parcourir tous les blocs du fichier et les afficher et lit le contenu de chaque bloc du fichier dans un buffer et exï¿½cute potentiellement des opï¿½rations sur les donnï¿½es du buffer
@@ -123,8 +267,148 @@ void afficher(sfsdtovc *f)
         lire(f, i, &buf);     //pour lire le contenu du bloc numï¿½ro i du fichier dans le buffer (buf).
         while (j < max)
         {
+            printf("%c", buf.tab[j]);
+
+            j++;
         }
+        i++;   //Incrementer le numéro du bloc (i) pour passer au bloc suivant lors de la prochaine itération de la boucle principale.
+    }
+    printf("\n");
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ //************************************insertion d'element saisie par l'utilisateur***********************************************
+
+
+
+
+
+
+
+
+   void lire(sfsdtovc *f, int num_block, buffer *buf);
+    void EcrireDir(sfsdtovc *f, int i, struct block *buf);
+
+
+
+
+
+    void inserer_element(sfsdtovc *f) {
+    etudiant etud;
+
+
+     printf("Saisir le nom : ");
+     scanf("%s", etud.nom);
+
+
+    printf("Saisir le prénom : ");
+    scanf("%s", etud.prenom);
+
+
+    printf("Saisir le matricule : ");
+    scanf("%d", &etud.matricule);
+
+
+     buffer buf;
+     int num_bloc;
+
+
+
+     // Demander à l'utilisateur le numéro du bloc où insérer l'étudiant
+
+
+       printf("Saisir le numéro du bloc pour l'insertion : ");
+       scanf("%d", &num_bloc);
+
+
+
+        if (num_bloc > f->entetef.No_dern_bloc) {
+        printf("Le bloc spécifié n'existe pas. L'insertion a échoué.\n");
+        return;
+    }
+
+    // lecture et écriture d'aprés le buffer
+      lire(f, num_bloc, &buf);
+      ecrire(f, num_bloc, &buf);
+
+      // Mettre à jour les informations dans l'entête
+
+       aff_entete(f, 2, f->entetef.ind_pos_libre + 1);
+       aff_entete(f, 3, f->entetef.NB_enreg_inser + 1);
+
+       printf("Insertion réussie.\n");
+
+
+
+
+
+
+
+
+
+
+
+        // lecture et écriture d'après le buffer
+         lire(f, num_bloc, &buf);
+
+    // Mettre à jour les informations dans l'entête
+    aff_entete(f, 2, f->entetef.ind_pos_libre + 1);
+    aff_entete(f, 3, f->entetef.NB_enreg_inser + 1);
+
+
+
+
+
+
+
+
+    // Partie du code traitant les derniers caractères restants dans le tableau Tab du dernier bloc
+
+
+
+
+
+    int ind = 0;
+    int indc;
+    int j = 0;
+    char Tab[max];
+    int b = max;
+    int i = num_bloc; // Mettre à jour i avec le numéro de bloc actuel
+
+    indc = b - 1;
+
+
+
+
+
+    while (ind != indc)
+    {
+        buf.tab[j] = Tab[ind];
+        ind = (ind + 1) % b;
+        j++;
+
+        // Si j = b, écrire le bloc dans le fichier
+        if (j == b)
+        {
+            EcrireDir(f, i, &buf);
+            j = 0;
+            i++;
+        }
+<<<<<<< HEAD
         i++;   //Incrï¿½mente le numï¿½ro du bloc (i) pour passer au bloc suivant lors de la prochaine itï¿½ration de la boucle principale.
+=======
+>>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
     }
 }
 void mat_aleat(char chaine[3])
@@ -235,6 +519,40 @@ void gen_enrg(char fnom[256], char fprenom[256], char chaine[256])
     strcat(chaine, matricule);
     strcat(chaine, nomE);
 
+
+
+
+    // Fin de la boucle de traitement
+    // On termine la copie des caractères restants de Tab dans le dernier bloc
+
+
+
+
+
+
+    buf.tab[j] = Tab[ind];
+    j++;
+
+
+
+
+
+    // Ecrire le dernier bloc dans le fichier
+        EcrireDir(f, i, &buf);
+
+
+
+
+
+    // Mettre à jour les informations dans l'entête
+    aff_entete(f, 1, i);
+    aff_entete(f, 2, j);
+
+
+
+
+
+    Fermer(f);
 }
 void creation_fichier(char nomfich[256], char fichnoms[256], char fichprenoms[256], int *n)
 {
@@ -276,6 +594,22 @@ void suppression_logique(sfsdtovc *f,  char nom[50], char prenom[50],int matricu
 
  }
  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -400,7 +734,15 @@ switch (choix){
             goto manipulation_fichier;
         }
 
+   // Ouvrir le fichier en mode création
 
+    sfsdtovc *fichier = ouvrir("votre_fichier.dat", 'n');
+
+    inserer_element(fichier);
+
+    afficher(fichier);
+
+    fermer(fichier);
 
  }
     }
