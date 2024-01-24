@@ -298,7 +298,19 @@ void afficher(sfsdtovc *f)
 
 
    void lire(sfsdtovc *f, int num_block, buffer *buf);
-    void EcrireDir(sfsdtovc *f, int i, struct block *buf);
+
+
+
+    void EcrireDir(sfsdtovc *f, int i, struct block *buf) {
+    if (i <= f->entetef.No_dern_bloc) {
+        fseek(f->fichier, sizeof(entete) + (i - 1) * sizeof(struct block), SEEK_SET);
+        fwrite(buf, sizeof(struct block), 1, f->fichier);
+       }
+}
+
+
+
+
 
 
 
@@ -552,7 +564,7 @@ void gen_enrg(char fnom[256], char fprenom[256], char chaine[256])
 
 
 
-    Fermer(f);
+    fclose(f);
 }
 void creation_fichier(char nomfich[256], char fichnoms[256], char fichprenoms[256], int *n)
 {
