@@ -270,7 +270,19 @@ void afficher(sfsdtovc *f)
 
 
    void lire(sfsdtovc *f, int num_block, buffer *buf);
-    void EcrireDir(sfsdtovc *f, int i, struct block *buf);
+
+
+
+    void EcrireDir(sfsdtovc *f, int i, struct block *buf) {
+    if (i <= f->entetef.No_dern_bloc) {
+        fseek(f->fichier, sizeof(entete) + (i - 1) * sizeof(struct block), SEEK_SET);
+        fwrite(buf, sizeof(struct block), 1, f->fichier);
+       }
+}
+
+
+
+
 
 
 
@@ -416,7 +428,7 @@ void afficher(sfsdtovc *f)
 
 
 
-    Fermer(f);
+    fclose(f);
 }
 
 
