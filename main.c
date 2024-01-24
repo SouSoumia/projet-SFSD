@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define max 100
-//*************************************************cr�ation de fichier*************************************************************
+//*************************************************crï¿½ation de fichier*************************************************************
   // enregistrement physique
   typedef struct etudiant
 {
@@ -43,11 +43,11 @@ typedef struct entete
 {
     int No_dern_bloc;                // indice de dernier bloc
 <<<<<<< HEAD
-    int NB_enreg_inser;             // nombre d'enregistrement ins�ri�
-    int NB_enreg_suppr;            // nombre d'enregistrement supprim�
+    int NB_enreg_inser;             // nombre d'enregistrement insï¿½riï¿½
+    int NB_enreg_suppr;            // nombre d'enregistrement supprimï¿½
 =======
-    int NB_enreg_inser;             // nombre d'enregistrement ins�ri�
-    int NB_enreg_suppr;            // nombre d'enregistrement supprim�
+    int NB_enreg_inser;             // nombre d'enregistrement insérié
+    int NB_enreg_suppr;            // nombre d'enregistrement supprimé
     int ind_pos_libre;            // indice de position libre
 >>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 } entete;
@@ -80,7 +80,7 @@ typedef struct entete
     }
     else
     {
-        if (mode == 'n')                         //cr�er un nouveau fichier ou ouvrir en mode cr�ation
+        if (mode == 'n')                         //crï¿½er un nouveau fichier ou ouvrir en mode crï¿½ation
         {
             f->fichier = fopen(nom, "wb+");
             f->entetef.No_dern_bloc = 1;
@@ -104,13 +104,13 @@ typedef struct entete
     void fermer(sfsdtovc *f)
 {
     rewind(f->fichier);                                           // positionner le curseur au debut du fichier
-    fwrite(&(f->entetef), sizeof(struct entete), 1, f->fichier);  // �crit l'ent�te du fichier (entety) dans le fichier
+    fwrite(&(f->entetef), sizeof(struct entete), 1, f->fichier);  // ï¿½crit l'entï¿½te du fichier (entety) dans le fichier
     fclose(f->fichier);
-    free(f);                                               // Lib�re la m�moire allou�e dynamiquement pour la structure sfsdtovc
+    free(f);                                               // Libï¿½re la mï¿½moire allouï¿½e dynamiquement pour la structure sfsdtovc
 }
 
 <<<<<<< HEAD
-// lire un bloc sp�cifique � partir d'un fichier  et le stocker dans le buffer (buf est un pointeur vers le buffer)
+// lire un bloc spï¿½cifique ï¿½ partir d'un fichier  et le stocker dans le buffer (buf est un pointeur vers le buffer)
 =======
 
 
@@ -121,18 +121,18 @@ typedef struct entete
 
 
 
-// lire un bloc sp�cifique � partir d'un fichier  et le stocker dans le buffer (buf est un pointeur vers le buffer)
+// lire un bloc spécifique à partir d'un fichier  et le stocker dans le buffer (buf est un pointeur vers le buffer)
 >>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 void lire(sfsdtovc *f, int num_block, buffer *buf)
 {
     if (num_block <= (f->entetef).No_dern_bloc)
     {
-        fseek(f->fichier, sizeof(entete) + (num_block - 1) * sizeof(struct block), SEEK_SET); //(SEEK_SET) qui d�finit le d�but du fichier comme r�f�rence.
+        fseek(f->fichier, sizeof(entete) + (num_block - 1) * sizeof(struct block), SEEK_SET); //(SEEK_SET) qui dï¿½finit le dï¿½but du fichier comme rï¿½fï¿½rence.
         fread(buf, sizeof(struct block), 1, f->fichier);
     }
 }
 <<<<<<< HEAD
-// �crire le contenu d'un tampon (buffer) dans un bloc sp�cifique
+// ï¿½crire le contenu d'un tampon (buffer) dans un bloc spï¿½cifique
 =======
 
 
@@ -146,7 +146,7 @@ void lire(sfsdtovc *f, int num_block, buffer *buf)
 
 
 
-// �crire le contenu d'un tampon (buffer) dans un bloc sp�cifique
+// écrire le contenu d'un tampon (buffer) dans un bloc spécifique
 >>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 
 void ecrire(sfsdtovc *f, int num_block, buffer *buf)
@@ -159,7 +159,7 @@ void ecrire(sfsdtovc *f, int num_block, buffer *buf)
 }
 
 <<<<<<< HEAD
-// La fonction est con�ue pour retourner diff�rentes valeurs de l'ent�te du fichier en fonction de la valeur de i
+// La fonction est conï¿½ue pour retourner diffï¿½rentes valeurs de l'entï¿½te du fichier en fonction de la valeur de i
 =======
 
 
@@ -172,7 +172,7 @@ void ecrire(sfsdtovc *f, int num_block, buffer *buf)
 
 
 
-// La fonction est con�ue pour retourner diff�rentes valeurs de l'ent�te du fichier en fonction de la valeur de i
+// La fonction est conçue pour retourner différentes valeurs de l'entête du fichier en fonction de la valeur de i
 >>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 
 int entete_f(sfsdtovc *f, int i)
@@ -187,7 +187,7 @@ int entete_f(sfsdtovc *f, int i)
         return f->entetef.NB_enreg_suppr;
 <<<<<<< HEAD
 }
-  //cette proc�dure permet de modifier diff�rentes valeurs de l'ent�te fonction de la valeur de i
+  //cette procï¿½dure permet de modifier diffï¿½rentes valeurs de l'entï¿½te fonction de la valeur de i
 =======
 
 
@@ -208,7 +208,7 @@ int entete_f(sfsdtovc *f, int i)
 
 
 
-  //cette proc�dure permet de modifier diff�rentes valeurs de l'ent�te fonction de la valeur de i
+  //cette procédure permet de modifier différentes valeurs de l'entête fonction de la valeur de i
 >>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 void aff_entete(sfsdtovc *f, int i, int val)
 {
@@ -218,13 +218,13 @@ void aff_entete(sfsdtovc *f, int i, int val)
         f->entetef.ind_pos_libre = val;
     if (i == 3)
 <<<<<<< HEAD
-        f->entetef.NB_enreg_suppr = val; // Si i est �gal � 4 la proc�dure met � jour la valeur de NB_enreg_suppr dans la structure entetef de la structure tovc avec la valeur fournie (val).
+        f->entetef.NB_enreg_suppr = val; // Si i est ï¿½gal ï¿½ 4 la procï¿½dure met ï¿½ jour la valeur de NB_enreg_suppr dans la structure entetef de la structure tovc avec la valeur fournie (val).
 }
-// llouer un nouveau bloc dans le fichier on va l'utiliser apr�s
+// llouer un nouveau bloc dans le fichier on va l'utiliser aprï¿½s
 =======
         f->entetef.NB_enreg_inser = val;
     if (i == 4)
-        f->entetef.NB_enreg_suppr = val; // Si i est �gal � 4 la proc�dure met � jour la valeur de NB_enreg_suppr dans la structure entetef de la structure tovc avec la valeur fournie (val).
+        f->entetef.NB_enreg_suppr = val; // Si i est égal à 4 la procédure met à jour la valeur de NB_enreg_suppr dans la structure entetef de la structure tovc avec la valeur fournie (val).
 }
 
 
@@ -240,7 +240,7 @@ void aff_entete(sfsdtovc *f, int i, int val)
 
 
 
-// llouer un nouveau bloc dans le fichier on va l'utiliser apr�s
+// llouer un nouveau bloc dans le fichier on va l'utiliser aprés
 >>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
 int alloc_block(sfsdtovc *f)
 {
@@ -255,23 +255,23 @@ int alloc_block(sfsdtovc *f)
 
 
 }
-// parcourir tous les blocs du fichier et les afficher et lit le contenu de chaque bloc du fichier dans un buffer et ex�cute potentiellement des op�rations sur les donn�es du buffer
+// parcourir tous les blocs du fichier et les afficher et lit le contenu de chaque bloc du fichier dans un buffer et exï¿½cute potentiellement des opï¿½rations sur les donnï¿½es du buffer
 
 void afficher(sfsdtovc *f)
 {
-    int i = 1, j;                                      //i � 1 pour repr�senter le num�ro du bloc en cours d'examen
+    int i = 1, j;                                      //i ï¿½ 1 pour reprï¿½senter le numï¿½ro du bloc en cours d'examen
     buffer buf;
     while (i <= (entete_f(f, 1)))
     {
         j = 0;
-        lire(f, i, &buf);     //pour lire le contenu du bloc num�ro i du fichier dans le buffer (buf).
+        lire(f, i, &buf);     //pour lire le contenu du bloc numï¿½ro i du fichier dans le buffer (buf).
         while (j < max)
         {
             printf("%c", buf.tab[j]);
 
             j++;
         }
-        i++;   //Incrementer le num�ro du bloc (i) pour passer au bloc suivant lors de la prochaine it�ration de la boucle principale.
+        i++;   //Incrementer le numéro du bloc (i) pour passer au bloc suivant lors de la prochaine itération de la boucle principale.
     }
     printf("\n");
 
@@ -324,7 +324,7 @@ void afficher(sfsdtovc *f)
      scanf("%s", etud.nom);
 
 
-    printf("Saisir le pr�nom : ");
+    printf("Saisir le prénom : ");
     scanf("%s", etud.prenom);
 
 
@@ -337,29 +337,29 @@ void afficher(sfsdtovc *f)
 
 
 
-     // Demander � l'utilisateur le num�ro du bloc o� ins�rer l'�tudiant
+     // Demander à l'utilisateur le numéro du bloc où insérer l'étudiant
 
 
-       printf("Saisir le num�ro du bloc pour l'insertion : ");
+       printf("Saisir le numéro du bloc pour l'insertion : ");
        scanf("%d", &num_bloc);
 
 
 
         if (num_bloc > f->entetef.No_dern_bloc) {
-        printf("Le bloc sp�cifi� n'existe pas. L'insertion a �chou�.\n");
+        printf("Le bloc spécifié n'existe pas. L'insertion a échoué.\n");
         return;
     }
 
-    // lecture et �criture d'apr�s le buffer
+    // lecture et écriture d'aprés le buffer
       lire(f, num_bloc, &buf);
       ecrire(f, num_bloc, &buf);
 
-      // Mettre � jour les informations dans l'ent�te
+      // Mettre à jour les informations dans l'entête
 
        aff_entete(f, 2, f->entetef.ind_pos_libre + 1);
        aff_entete(f, 3, f->entetef.NB_enreg_inser + 1);
 
-       printf("Insertion r�ussie.\n");
+       printf("Insertion réussie.\n");
 
 
 
@@ -371,10 +371,10 @@ void afficher(sfsdtovc *f)
 
 
 
-        // lecture et �criture d'apr�s le buffer
+        // lecture et écriture d'après le buffer
          lire(f, num_bloc, &buf);
 
-    // Mettre � jour les informations dans l'ent�te
+    // Mettre à jour les informations dans l'entête
     aff_entete(f, 2, f->entetef.ind_pos_libre + 1);
     aff_entete(f, 3, f->entetef.NB_enreg_inser + 1);
 
@@ -385,7 +385,7 @@ void afficher(sfsdtovc *f)
 
 
 
-    // Partie du code traitant les derniers caract�res restants dans le tableau Tab du dernier bloc
+    // Partie du code traitant les derniers caractères restants dans le tableau Tab du dernier bloc
 
 
 
@@ -396,7 +396,7 @@ void afficher(sfsdtovc *f)
     int j = 0;
     char Tab[max];
     int b = max;
-    int i = num_bloc; // Mettre � jour i avec le num�ro de bloc actuel
+    int i = num_bloc; // Mettre à jour i avec le numéro de bloc actuel
 
     indc = b - 1;
 
@@ -410,7 +410,7 @@ void afficher(sfsdtovc *f)
         ind = (ind + 1) % b;
         j++;
 
-        // Si j = b, �crire le bloc dans le fichier
+        // Si j = b, écrire le bloc dans le fichier
         if (j == b)
         {
             EcrireDir(f, i, &buf);
@@ -418,17 +418,17 @@ void afficher(sfsdtovc *f)
             i++;
         }
 <<<<<<< HEAD
-        i++;   //Incr�mente le num�ro du bloc (i) pour passer au bloc suivant lors de la prochaine it�ration de la boucle principale.
+        i++;   //Incrï¿½mente le numï¿½ro du bloc (i) pour passer au bloc suivant lors de la prochaine itï¿½ration de la boucle principale.
 =======
 >>>>>>> 30d88f35e027f7073d9b279933fc2392060ac3f2
     }
 }
 void mat_aleat(char chaine[3])
 {
-    int min = 0; //définissent les bornes pour la génération de nombres aléatoires entre 0 et 9 inclus.
+    int min = 0; //dÃ©finissent les bornes pour la gÃ©nÃ©ration de nombres alÃ©atoires entre 0 et 9 inclus.
     int maxi = 9; 
-    char c; //est utilisé pour stocker chaque caractère généré.
-    int x; // est la valeur générée aléatoirement entre min et maxi.
+    char c; //est utilisÃ© pour stocker chaque caractÃ¨re gÃ©nÃ©rÃ©.
+    int x; // est la valeur gÃ©nÃ©rÃ©e alÃ©atoirement entre min et maxi.
     FILE *fichier = fopen("ids.txt", "r+");
     int vrai = 0;
     ;
@@ -535,7 +535,7 @@ void gen_enrg(char fnom[256], char fprenom[256], char chaine[256])
 
 
     // Fin de la boucle de traitement
-    // On termine la copie des caract�res restants de Tab dans le dernier bloc
+    // On termine la copie des caractères restants de Tab dans le dernier bloc
 
 
 
@@ -556,7 +556,7 @@ void gen_enrg(char fnom[256], char fprenom[256], char chaine[256])
 
 
 
-    // Mettre � jour les informations dans l'ent�te
+    // Mettre à jour les informations dans l'entête
     aff_entete(f, 1, i);
     aff_entete(f, 2, j);
 
@@ -609,7 +609,41 @@ void suppression_logique(sfsdtovc *f,  char nom[50], char prenom[50],int matricu
 
 
 
+// Binary search for the info by the matricule, the returned value is the index of the block where the info is found, the index of the block where the info is found, and a var trouve to indicate if the info is found or not
 
+void Binary_Search(sfsdtovc *f, int matricule, int *num_bloc , int *num_eng , int *trouve)
+{
+    buffer buf;
+    int i = 1, j = 0;
+    int bi = 1, bs = entete_f(f, 1);
+    *trouve = 0; // 0 = false
+    *num_bloc = 0;
+    *num_eng = 0;
+
+    while(bi <= bs && *trouve == 0)
+    {
+        i = (bi + bs) / 2;
+        lire(f, i, &buf);
+        while (j < max && *trouve == 0)
+        {
+            if (buf.tab[j] == matricule)
+            {
+                *trouve = 1;
+                *num_bloc = i;
+                *num_eng = j;
+            }
+            j++;
+        }
+      
+        if (buf.tab[j] > matricule){
+            bs = i - 1;
+        }else{
+            bi = i + 1;
+        }
+    }
+    
+    
+}
 
 
 
@@ -746,7 +780,7 @@ switch (choix){
             goto manipulation_fichier;
         }
 
-   // Ouvrir le fichier en mode cr�ation
+   // Ouvrir le fichier en mode création
 
     sfsdtovc *fichier = ouvrir("votre_fichier.dat", 'n');
 
